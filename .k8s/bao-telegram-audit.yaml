@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bao-tg-audit
+  labels:
+    app: bao-tg-audit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bao-tg-audit
+  template:
+    metadata:
+      name: bao-tg-audit
+      labels:
+        app: bao-tg-audit
+    spec:
+      containers:
+        - name: bao-tg-audit
+          image: docker.io/glad2os/bao-telegram-audit:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+      restartPolicy: Always
+      
